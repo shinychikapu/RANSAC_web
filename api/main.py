@@ -2,9 +2,9 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import numpy as np
-from ransac import RANSAC, Least_Square, SEL
+from api.ransac import RANSAC, Least_Square, SEL
 import json
-import io
+
 
 class Data(BaseModel):
     threshold: float | None = None
@@ -56,11 +56,3 @@ async def path_fun(data: Data):
             "slope": model.m, 
             "intercept": model.c}
 
-@app.post("/ransac/postreact")
-async def path_fun(data: ReactData):
-    x = np.asarray(data.x)
-    y = np.asarray(data.y)  
-    ransac_obj = RANSAC(model = Least_Square(), loss_fun = SEL)
-    model = ransac_obj.fit(x, y)
-    y_ransac = model.bestFit.predict(x)
-    return {"y_ransac": y_ransac.tolist()}
