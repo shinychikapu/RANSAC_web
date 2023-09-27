@@ -20,7 +20,7 @@ app = FastAPI()
 
 # CORS configuration
 origins = [
-    "http://localhost:5500",  # Replace this with the origin of your web page
+    "http://localhost:5501",  # Replace this with the origin of your web page
     # Add other allowed origins as needed
     "http://localhost:5174",
 ]
