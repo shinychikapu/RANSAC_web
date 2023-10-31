@@ -4,7 +4,8 @@ from pydantic import BaseModel
 import numpy as np
 from api.ransac import RANSAC, Least_Square, SEL
 import json
-
+ 
+ #uvicorn api.main:app --reload
 
 class Data(BaseModel):
     threshold: float | None = None
